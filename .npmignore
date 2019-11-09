@@ -1,0 +1,15 @@
+test/**/*
+bin/**/*
+utils/**/*
+dist/test/**/*
+index.ts
+tsconfig.json
+yarn.lock
+.responsiverc.yml
+.gitignore
+**/*.spec.ts
+.nyc_output
+output
+.nycrc.json
+tsconfig.json
+.huskyrc.json
