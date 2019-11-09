@@ -1,4 +1,4 @@
-import { cosmiconfig } from "cosmiconfig";
+import { cosmiconfigSync } from "cosmiconfig";
 import path from "path";
 
 export type Extension = "jpg" | "jpeg" | "png";
@@ -12,8 +12,8 @@ export interface Config {
   rewrite: { from: string; to: string };
 }
 
-export async function loadConfig(): Promise<Config> {
-  const result = await cosmiconfig("responsive").search(process.cwd());
+export function loadConfig(): Config {
+  const result = cosmiconfigSync("responsive").search(process.cwd());
 
   if (!result) {
     throw new Error("Cannot load responsive configuration file");

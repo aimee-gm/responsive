@@ -9,7 +9,7 @@
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "yarn tsc",
-    "test": "nyc mocha"
+    "test": "nyc mocha --opts src/test/mocha.opts"
   },
   "bin": {
     "resize-images": "./dist/bin/resizer.js",
@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "cosmiconfig": "^6.0.0",
-    "escape-string-regexp": "^2.0.0",
     "glob": "^7.1.6",
     "glob-promise": "^3.4.0",
     "jimp": "^0.8.5"

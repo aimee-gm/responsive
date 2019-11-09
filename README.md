@@ -35,6 +35,23 @@ Run `yarn resize-images` or `npx resize-images`. Resizes images found in `srcDir
 
 Run `yarn verify-resized-images` or `npx verify-resized-images`. Verifies images found in `srcDir` have been correctly resized and reamed to `outDir` in `sizes`. Useful for CI.
 
+### responsiveImages(filepath: string): { src: string, srcset: string }[]
+
+Returns an object with `src` and `srcset` attributes for a responsive `<img>` tag. `filepath` should be the path to the **original** image, relative to your project root. The `src` will be modified using the `srcRewrite` configuration option.
+
+#### Use with static site generators (e.g. 11ty)
+
+```javascript
+const { responsiveImages } = require("@aimee.gm/responsive");
+
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addShortcode("responsive", (filepath, alt) => {
+    const { src, srcset } = responsiveImages(filepath);
+    return `<img src="${src}" srcset="${srcset}" sizes="100vw" alt="${alt}">`;
+  });
+};
+```
+
 ## Configuration
 
 ### File format

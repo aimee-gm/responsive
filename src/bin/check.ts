@@ -5,7 +5,7 @@ import { findImages } from "../utils/findImages";
 import { missingResizedImages } from "../utils/missingResizedImages";
 
 export async function check(): Promise<number> {
-  const config = await loadConfig();
+  const config = loadConfig();
 
   const sourceFiles = await findImages(config.srcDir, config.ext);
   console.log(`Found ${sourceFiles.length} source images`);

@@ -8,8 +8,8 @@ import { check } from "../bin/check";
 
 describe("bin/check()", () => {
   beforeEach(() => {
-    sinon.stub(cosmiconfig, "cosmiconfig").returns({
-      async search() {
+    sinon.stub(cosmiconfig, "cosmiconfigSync").returns({
+      search() {
         return {
           filepath: path.resolve(process.cwd(), "./responsiverc.json"),
           config: { srcDir: "./source", outDir: "./output" }

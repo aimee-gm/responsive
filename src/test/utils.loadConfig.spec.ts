@@ -6,13 +6,13 @@ import { loadConfig } from "../utils/loadConfig";
 
 function configStub(config: {} | null = null) {
   sinon
-    .stub(cosmiconfig, "cosmiconfig")
+    .stub(cosmiconfig, "cosmiconfigSync")
     .withArgs("responsive")
     .returns({
       search: sinon
         .stub()
         .withArgs(process.cwd())
-        .resolves(config)
+        .returns(config)
     } as any);
 }
 
@@ -23,7 +23,7 @@ describe("loadConfig()", () => {
 
   it("rejects when it cannot find a config file", async () => {
     configStub();
-    await expect(loadConfig()).to.be.rejectedWith(
+    expect(() => loadConfig()).to.throw(
       "Cannot load responsive configuration file"
     );
   });

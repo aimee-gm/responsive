@@ -4,3 +4,4 @@ yarn-error.log
 dist
 .nyc_output
 output
+.DS_Store

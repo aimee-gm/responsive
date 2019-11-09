@@ -5,7 +5,7 @@ import { resizeMissingImages } from "../utils/resizeMissingImages";
 import { findImages } from "../utils/findImages";
 
 export async function resizer() {
-  const config = await loadConfig();
+  const config = loadConfig();
   const sourceFiles = await findImages(config.srcDir, config.ext);
 
   for (const file of sourceFiles) {
