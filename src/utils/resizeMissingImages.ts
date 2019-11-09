@@ -1,4 +1,5 @@
-import jimp from "jimp";
+import sharp from "sharp";
+import mkdirp from "mkdirp-promise";
 import path from "path";
 
 import { promiseMap } from "./promiseMap";
@@ -19,13 +20,13 @@ export async function resizeMissingImages(
     return;
   }
 
-  const source = await jimp.read(sourceFilePath);
+  const destFolder = path.dirname(toProcess[0].target);
+
+  await mkdirp(destFolder);
+  const source = sharp(sourceFilePath);
 
   await promiseMap(toProcess, async ({ size, target }) => {
-    await source
-      .resize(size, jimp.AUTO)
-      .quality(75)
-      .write(target);
+    await source.resize(size).toFile(target);
 
     console.log(`⚙️  Resized ${filePath} to ${size}px`);
   });
