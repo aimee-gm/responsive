@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import mkdirp from "mkdirp-promise";
+import mkdirp from "mkdirp";
 import path from "path";
 
 import { promiseMap } from "./promiseMap";

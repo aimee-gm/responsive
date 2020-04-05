@@ -20,3 +20,10 @@ export function responsiveImages(filepath: string) {
 
   return { src, srcset };
 }
+
+export function shortcode(sizes: string) {
+  return (filepath: string, alt: string, className: string) => {
+    const { src, srcset } = responsiveImages(filepath);
+    return `<img src="${src}" srcset="${srcset}" sizes="${sizes}" alt="${alt}" class="${className}">`;
+  };
+}
