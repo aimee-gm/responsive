@@ -1,0 +1,7 @@
+srcDir: src/test/photos
+outDir: site/assets/images
+srcRewrite: /assets/images
+sizes:
+  - 320
+  - 640
+  - 1280
