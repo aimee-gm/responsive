@@ -3,7 +3,7 @@ import mockFs from "mock-fs";
 
 import { missingResizedImages } from "../utils/missingResizedImages";
 
-describe("canAccessFile", () => {
+describe("utils/missingResizedImages()", () => {
   afterEach(() => {
     mockFs.restore();
   });

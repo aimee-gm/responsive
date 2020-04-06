@@ -16,7 +16,7 @@ function configStub(config: {} | null = null) {
     } as any);
 }
 
-describe("loadConfig()", () => {
+describe("utils/loadConfig()", () => {
   afterEach(() => {
     sinon.restore();
   });

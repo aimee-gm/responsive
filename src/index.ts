@@ -21,9 +21,15 @@ export function responsiveImages(filepath: string) {
   return { src, srcset };
 }
 
-export function shortcode(sizes: string) {
-  return (filepath: string, alt: string, className: string) => {
+interface ShortcodeOptions {
+  class?: string;
+}
+
+export function shortcode(sizes: string[]) {
+  const sizesString = sizes.join(", ");
+  return (filepath: string, alt: string, options: ShortcodeOptions = {}) => {
     const { src, srcset } = responsiveImages(filepath);
-    return `<img src="${src}" srcset="${srcset}" sizes="${sizes}" alt="${alt}" class="${className}">`;
+    return `<img src="${src}" srcset="${srcset}" sizes="${sizesString}" alt="${alt}" class="${options.class ||
+      ""}">`;
   };
 }
