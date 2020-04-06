@@ -13,7 +13,7 @@ describe("utils/findImages()", () => {
       "/my/image/dir/pic1.jpg": "",
       "/my/image/dir/pic2.jpeg": "",
       "/my/image/dir/pic3.png": "",
-      "/my/image/dir/not-a-pic.txt": ""
+      "/my/image/dir/not-a-pic.txt": "",
     });
 
     expect(
@@ -26,11 +26,11 @@ describe("utils/findImages()", () => {
       "/my/image/dir/pic1.jpg": "",
       "/my/image/dir/pic2.jpeg": "",
       "/my/image/dir/pic3.png": "",
-      "/my/image/dir/not-a-pic.txt": ""
+      "/my/image/dir/not-a-pic.txt": "",
     });
 
     expect(await findImages("/my/image", ["jpg"])).to.deep.equal([
-      "dir/pic1.jpg"
+      "dir/pic1.jpg",
     ]);
   });
 });

@@ -11,7 +11,7 @@ export function resizedPath(
 ): string {
   const { delimiter } = {
     delimiter: "-",
-    ...opts
+    ...opts,
   };
 
   const ext = path.extname(filePath);

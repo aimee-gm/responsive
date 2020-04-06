@@ -10,7 +10,7 @@ describe("utils/canAccessFile()", () => {
 
   it("returns true if it can access the file", async () => {
     mockFs({
-      "/test/file": "some contents"
+      "/test/file": "some contents",
     });
 
     expect(await canAccessFile("/test/file")).to.equal(true);
@@ -18,7 +18,7 @@ describe("utils/canAccessFile()", () => {
 
   it("returns false if it cannot access the file", async () => {
     mockFs({
-      "/test/tricked": "i have a different name"
+      "/test/tricked": "i have a different name",
     });
 
     expect(await canAccessFile("/test/file")).to.equal(false);

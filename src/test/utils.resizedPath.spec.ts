@@ -12,7 +12,7 @@ describe("utils/resizedPath()", () => {
   it("should respect a custom delimiter", () => {
     expect(
       resizedPath("./my/path/to/file.jpg", 400, {
-        delimiter: "."
+        delimiter: ".",
       })
     ).to.equal("my/path/to/file.400.jpg");
   });

@@ -27,7 +27,7 @@ export function loadConfig(): Config {
     ext: ["jpg", "jpeg", "png"] as Extension[],
     sizes: [400, 800, 1600],
     srcRewrite: "./",
-    ...result.config
+    ...result.config,
   };
 
   return {
@@ -36,7 +36,7 @@ export function loadConfig(): Config {
     srcDir: path.resolve(root, config.srcDir),
     rewrite: {
       from: path.resolve("/", config.srcDir),
-      to: path.resolve("/", config.srcRewrite)
-    }
+      to: path.resolve("/", config.srcRewrite),
+    },
   };
 }

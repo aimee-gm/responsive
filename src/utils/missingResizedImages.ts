@@ -15,7 +15,7 @@ export async function missingResizedImages(
   filePath: string,
   sizes: number[]
 ): Promise<AnalysedImage[]> {
-  const files = await promiseMap(sizes, async size => {
+  const files = await promiseMap(sizes, async (size) => {
     const target = path.resolve(outputDir, resizedPath(filePath, size));
     const exists = await canAccessFile(target);
 
