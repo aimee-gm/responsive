@@ -8,5 +8,5 @@ export async function findImages(
   const extPattern = ext.length === 1 ? ext : `{${ext.join(",")}}`;
   const pattern = path.join(`${srcDir}`, "**", `*.${extPattern}`);
   const files = await glob(pattern);
-  return files.map(filePath => path.relative(srcDir, filePath));
+  return files.map((filePath) => path.relative(srcDir, filePath));
 }

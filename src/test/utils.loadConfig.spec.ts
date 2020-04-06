@@ -9,10 +9,7 @@ function configStub(config: {} | null = null) {
     .stub(cosmiconfig, "cosmiconfigSync")
     .withArgs("responsive")
     .returns({
-      search: sinon
-        .stub()
-        .withArgs(process.cwd())
-        .returns(config)
+      search: sinon.stub().withArgs(process.cwd()).returns(config),
     } as any);
 }
 
@@ -31,7 +28,7 @@ describe("utils/loadConfig()", () => {
   it("resolves the default config with an empty file", async () => {
     configStub({
       filepath: path.resolve(process.cwd(), ".responsiverc"),
-      config: {}
+      config: {},
     });
 
     const config = await loadConfig();
@@ -41,7 +38,7 @@ describe("utils/loadConfig()", () => {
       outDir: process.cwd(),
       srcDir: process.cwd(),
       sizes: [400, 800, 1600],
-      rewrite: { from: "/", to: "/" }
+      rewrite: { from: "/", to: "/" },
     });
   });
 
@@ -53,8 +50,8 @@ describe("utils/loadConfig()", () => {
         outDir: "./output",
         srcDir: "./source",
         sizes: [20, 30, 40],
-        srcRewrite: "./rewrite"
-      }
+        srcRewrite: "./rewrite",
+      },
     });
 
     const config = await loadConfig();
@@ -64,7 +61,7 @@ describe("utils/loadConfig()", () => {
       outDir: path.resolve(process.cwd(), "./output"),
       srcDir: path.resolve(process.cwd(), "./source"),
       sizes: [20, 30, 40],
-      rewrite: { from: "/source", to: "/rewrite" }
+      rewrite: { from: "/source", to: "/rewrite" },
     });
   });
 });

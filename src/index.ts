@@ -9,9 +9,9 @@ export function responsiveImages(filepath: string) {
     config.rewrite.to
   );
 
-  const resized = config.sizes.map(size => [
+  const resized = config.sizes.map((size) => [
     resizedPath(rewrittenPath, size),
-    size
+    size,
   ]);
 
   const [[src]] = resized;
@@ -29,7 +29,8 @@ export function shortcode(sizes: string[]) {
   const sizesString = sizes.join(", ");
   return (filepath: string, alt: string, options: ShortcodeOptions = {}) => {
     const { src, srcset } = responsiveImages(filepath);
-    return `<img src="${src}" srcset="${srcset}" sizes="${sizesString}" alt="${alt}" class="${options.class ||
-      ""}">`;
+    return `<img src="${src}" srcset="${srcset}" sizes="${sizesString}" alt="${alt}" class="${
+      options.class || ""
+    }">`;
   };
 }

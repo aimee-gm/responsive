@@ -10,7 +10,8 @@
     "prepublishOnly": "yarn build",
     "build": "yarn tsc",
     "test": "nyc --all mocha --opts src/test/mocha.opts",
-    "prettier": "prettier --check \"src/**/*.ts\""
+    "prettier": "prettier --check \"src/**/*.ts\"",
+    "prettier:fix": "prettier --write \"src/**/*.ts\""
   },
   "bin": {
     "resize-images": "./dist/bin/resizer.js",
@@ -38,7 +39,7 @@
     "mocha": "^7.1.1",
     "mock-fs": "^4.10.3",
     "nyc": "^15.0.1",
-    "prettier": "1.19.0",
+    "prettier": "2.0.4",
     "pretty-quick": "^2.0.1",
     "sinon": "^9.0.1",
     "source-map-support": "^0.5.16",

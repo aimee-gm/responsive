@@ -12,9 +12,9 @@ describe("bin/check()", () => {
       search() {
         return {
           filepath: path.resolve(process.cwd(), "./responsiverc.json"),
-          config: { srcDir: "./source", outDir: "./output" }
+          config: { srcDir: "./source", outDir: "./output" },
         };
-      }
+      },
     } as any);
   });
 
@@ -27,7 +27,7 @@ describe("bin/check()", () => {
     beforeEach(() => {
       mockFs({
         "./source/dir/pic1.jpg": "",
-        "./source/dir/pic2.jpg": ""
+        "./source/dir/pic2.jpg": "",
       });
     });
 
@@ -45,7 +45,7 @@ describe("bin/check()", () => {
       expect(consoleStub.args).to.deep.equal([
         ["Found 2 source images"],
         ["❌  Missing 3 resized images for dir/pic1.jpg"],
-        ["❌  Missing 3 resized images for dir/pic2.jpg"]
+        ["❌  Missing 3 resized images for dir/pic2.jpg"],
       ]);
     });
   });
@@ -57,7 +57,7 @@ describe("bin/check()", () => {
         "./source/dir/pic2.jpg": "",
         "./output/dir/pic1-400.jpg": "",
         "./output/dir/pic1-800.jpg": "",
-        "./output/dir/pic1-1600.jpg": ""
+        "./output/dir/pic1-1600.jpg": "",
       });
     });
 
@@ -72,7 +72,7 @@ describe("bin/check()", () => {
       await check();
       expect(consoleStub.args).to.deep.equal([
         ["Found 2 source images"],
-        ["❌  Missing 3 resized images for dir/pic2.jpg"]
+        ["❌  Missing 3 resized images for dir/pic2.jpg"],
       ]);
     });
   });
@@ -85,7 +85,7 @@ describe("bin/check()", () => {
         "./output/dir/pic1-400.jpg": "",
         "./output/dir/pic1-800.jpg": "",
         "./output/dir/pic1-1600.jpg": "",
-        "./output/dir/pic2-400.jpg": ""
+        "./output/dir/pic2-400.jpg": "",
       });
     });
 
@@ -100,7 +100,7 @@ describe("bin/check()", () => {
       await check();
       expect(consoleStub.args).to.deep.equal([
         ["Found 2 source images"],
-        ["❌  Missing 2 resized images for dir/pic2.jpg"]
+        ["❌  Missing 2 resized images for dir/pic2.jpg"],
       ]);
     });
   });
@@ -112,7 +112,7 @@ describe("bin/check()", () => {
         "./output/dir/pic1-400.jpg": "",
         "./output/dir/pic1-800.jpg": "",
         "./output/dir/pic1-1600.jpg": "",
-        "./output/dir/pic2-400.jpg": ""
+        "./output/dir/pic2-400.jpg": "",
       });
     });
 
