@@ -1,6 +1,23 @@
 # @aimee.gm/responsive
 
-Auto generate multiple resized images for responsive use
+Auto generate multiple resized images for responsive use with a simple CLI command. Also comes with a CLI tool to verify images have been resized (useful for CI) and handy methods for creating [eleventy](https://11ty.dev) shortcodes.
+
+- [@aimee.gm/responsive](#aimeegmresponsive)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Configuration](#configuration)
+    - [Resize images](#resize-images)
+    - [Check resized images](#check-resized-images)
+    - [shortcode()](#shortcode)
+    - [responsiveImages()](#responsiveimages)
+  - [Configuration](#configuration-1)
+    - [File format](#file-format)
+    - [Options](#options)
+      - [srcDir](#srcdir)
+      - [outDir](#outdir)
+      - [sizes](#sizes)
+      - [ext](#ext)
+      - [srcRewrite](#srcrewrite)
 
 ## Installation
 
@@ -35,11 +52,48 @@ Run `yarn resize-images` or `npx resize-images`. Resizes images found in `srcDir
 
 Run `yarn verify-resized-images` or `npx verify-resized-images`. Verifies images found in `srcDir` have been correctly resized and reamed to `outDir` in `sizes`. Useful for CI.
 
-### responsiveImages(filepath: string): { src: string, srcset: string }[]
+### shortcode()
 
-Returns an object with `src` and `srcset` attributes for a responsive `<img>` tag. `filepath` should be the path to the **original** image, relative to your project root. The `src` will be modified using the `srcRewrite` configuration option.
+`shortcode(sizes: string[]): (src: string, alt: string, options: { class?: string } = {}) => string`
 
-#### Use with static site generators (e.g. 11ty)
+Returns an function that can be used as an eleventy shortcode. Accepts the following arguments:
+
+- `src`: `string` (required) the path to the un-resized image file. The URL path will be modified using the `srcRewrite` configuration option.
+- `alt`: `string` (required) the alt text for the image
+- `options`: `object` (optional)
+  - `class` (optional) class to apply to the generated image element.
+
+Example:
+
+```javascript
+const { shortcode } = require("@aimee.gm/responsive");
+
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addShortcode(
+    "responsive",
+    shortcode([
+      "(min-width: 1025px) 864px",
+      "(min-width: 768px) 736px",
+      "(min-width: 645px) 608px",
+      "100vw"
+    ])
+  );
+};
+```
+
+And use with nunjucks:
+
+```nunjucks
+{% responsive image.url, image.alt, { class: "my-custom-class" } %}
+```
+
+### responsiveImages()
+
+`responsiveImages(filepath: string): { src: string, srcset: string }`
+
+Returns an object with `src` and `srcset` attributes for a responsive `<img>` tag. `filepath` should be the path to the **original** image, relative to your project root. The `src` will be modified using the `srcRewrite` configuration option. Suitable for more control over how markup is rendered.
+
+Example:
 
 ```javascript
 const { responsiveImages } = require("@aimee.gm/responsive");

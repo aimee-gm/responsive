@@ -9,7 +9,8 @@
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "yarn tsc",
-    "test": "nyc --all mocha --opts src/test/mocha.opts"
+    "test": "nyc --all mocha --opts src/test/mocha.opts",
+    "prettier": "prettier --check \"src/**/*.ts\""
   },
   "bin": {
     "resize-images": "./dist/bin/resizer.js",
