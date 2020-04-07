@@ -36,10 +36,10 @@ Example:
 ```yaml
 srcDir: site/assets/images/originals
 outDir: site/assets/images/photos
+srcRewrite: assets/images/photos
 sizes:
   - 400
   - 800
-srcRewrite: /assets/images/photos
 ```
 
 See [Configuration](#Configuration) for a detailed description.
@@ -68,14 +68,14 @@ Example:
 ```javascript
 const { shortcode } = require("@aimee.gm/responsive");
 
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode(
     "responsive",
     shortcode([
       "(min-width: 1025px) 864px",
       "(min-width: 768px) 736px",
       "(min-width: 645px) 608px",
-      "100vw"
+      "100vw",
     ])
   );
 };
@@ -98,7 +98,7 @@ Example:
 ```javascript
 const { responsiveImages } = require("@aimee.gm/responsive");
 
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode("responsive", (filepath, alt) => {
     const { src, srcset } = responsiveImages(filepath);
     return `<img src="${src}" srcset="${srcset}" sizes="100vw" alt="${alt}">`;
@@ -136,4 +136,4 @@ Array of file extensions to match for files to resize. Defaults to `["jpg", "jpe
 
 #### srcRewrite
 
-Path to use for `<img>` when using `replaceImgSrc()` (currently undocumented) to convert `src` to `srcset`.
+Path to use for `<img>` when using `responsiveImages()` to resolve a full-size image path to the resized files. Defaults to `outDir`.
