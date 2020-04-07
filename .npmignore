@@ -1,8 +1,6 @@
-test/**/*
-bin/**/*
-utils/**/*
+node_modules
+src/**/*
 dist/test/**/*
-index.ts
 tsconfig.json
 yarn.lock
 .responsiverc.yml
@@ -13,3 +11,4 @@ output
 .nycrc.json
 tsconfig.json
 .huskyrc.json
+.travis.yml

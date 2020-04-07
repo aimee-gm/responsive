@@ -36,7 +36,7 @@ export function loadConfig(): Config {
     srcDir: path.resolve(root, config.srcDir),
     rewrite: {
       from: path.resolve("/", config.srcDir),
-      to: path.resolve("/", config.srcRewrite),
+      to: path.resolve("/", config.srcRewrite || config.outDir),
     },
   };
 }
