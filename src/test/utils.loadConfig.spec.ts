@@ -25,13 +25,13 @@ describe("utils/loadConfig()", () => {
     );
   });
 
-  it("resolves the default config with an empty file", async () => {
+  it("resolves the default config with an empty file", () => {
     configStub({
       filepath: path.resolve(process.cwd(), ".responsiverc"),
       config: {},
     });
 
-    const config = await loadConfig();
+    const config = loadConfig();
 
     expect(config).to.deep.include({
       ext: ["jpg", "jpeg", "png"],
@@ -39,10 +39,11 @@ describe("utils/loadConfig()", () => {
       srcDir: process.cwd(),
       sizes: [400, 800, 1600],
       rewrite: { from: "/", to: "/" },
+      defaultSize: 1600,
     });
   });
 
-  it("resolves the correct configuration when found", async () => {
+  it("resolves the correct configuration when found", () => {
     configStub({
       filepath: path.resolve(process.cwd(), ".responsiverc"),
       config: {
@@ -51,10 +52,11 @@ describe("utils/loadConfig()", () => {
         srcDir: "./source",
         sizes: [20, 30, 40],
         srcRewrite: "./rewrite",
+        defaultSize: 30,
       },
     });
 
-    const config = await loadConfig();
+    const config = loadConfig();
 
     expect(config).to.deep.include({
       ext: ["gif"],
@@ -62,6 +64,25 @@ describe("utils/loadConfig()", () => {
       srcDir: path.resolve(process.cwd(), "./source"),
       sizes: [20, 30, 40],
       rewrite: { from: "/source", to: "/rewrite" },
+      defaultSize: 30,
     });
+  });
+
+  it("should throw an error when the default size does not exist", async () => {
+    configStub({
+      filepath: path.resolve(process.cwd(), ".responsiverc"),
+      config: {
+        ext: ["gif"],
+        outDir: "./output",
+        srcDir: "./source",
+        sizes: [20, 30, 40],
+        srcRewrite: "./rewrite",
+        defaultSize: 35,
+      },
+    });
+
+    expect(() => loadConfig()).to.throw(
+      'The default size of "35" does not exist. Please choose one from: 20, 30, 40'
+    );
   });
 });

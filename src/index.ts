@@ -14,7 +14,7 @@ export function responsiveImages(filepath: string) {
     size,
   ]);
 
-  const [[src]] = resized;
+  const src = resizedPath(rewrittenPath, config.defaultSize);
 
   const srcset = resized.map(([src, size]) => `${src} ${size}w`).join(", ");
 

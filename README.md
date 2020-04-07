@@ -18,6 +18,7 @@ Auto generate multiple resized images for responsive use with a simple CLI comma
       - [sizes](#sizes)
       - [ext](#ext)
       - [srcRewrite](#srcrewrite)
+      - [defaultSize](#defaultsize)
 
 ## Installation
 
@@ -136,4 +137,8 @@ Array of file extensions to match for files to resize. Defaults to `["jpg", "jpe
 
 #### srcRewrite
 
-Path to use for `<img>` when using `responsiveImages()` to resolve a full-size image path to the resized files. Defaults to `outDir`.
+Path to use for `<img>` when using `responsiveImages()` to resolve a full-size image path to the resized files. Defaults to `outDir`
+
+#### defaultSize
+
+Default size to use for creating the `src` attribute with `responsiveImages()` and `shortcode()`. Defaults to the largest resized image.
