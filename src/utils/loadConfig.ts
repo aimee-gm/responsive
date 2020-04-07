@@ -9,6 +9,7 @@ export interface Config {
   ext: Extension[];
   sizes: number[];
   assetPath: string;
+  defaultSize: number;
   rewrite: { from: string; to: string };
 }
 
@@ -30,6 +31,17 @@ export function loadConfig(): Config {
     ...result.config,
   };
 
+  const defaultSize =
+    config.defaultSize || config.sizes[config.sizes.length - 1];
+
+  if (!config.sizes.includes(defaultSize)) {
+    throw new Error(
+      `The default size of "${defaultSize}" does not exist. Please choose one from: ${config.sizes.join(
+        ", "
+      )}`
+    );
+  }
+
   return {
     ...config,
     outDir: path.resolve(root, config.outDir),
@@ -38,5 +50,6 @@ export function loadConfig(): Config {
       from: path.resolve("/", config.srcDir),
       to: path.resolve("/", config.srcRewrite || config.outDir),
     },
+    defaultSize,
   };
 }
